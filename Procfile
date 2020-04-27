@@ -1,1 +1,1 @@
-web: java -jar target/InterviewInformationBot-1.0-jar-with-dependencies.jar
+web: java -cp target/InterviewInformationBot-1.0.jar ru.jbrain.App
