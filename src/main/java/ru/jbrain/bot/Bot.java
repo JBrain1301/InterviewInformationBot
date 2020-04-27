@@ -1,5 +1,7 @@
 package ru.jbrain.bot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -16,8 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bot extends TelegramLongPollingBot {
-    private Map<String, String> answerMap = new HashMap<>();
-    private StringBuilder builder = new StringBuilder();
+    private final StringBuilder builder = new StringBuilder();
+    private static final Logger log = LoggerFactory.getLogger(Bot.class);
 
     public Bot() {
     }
@@ -33,7 +35,7 @@ public class Bot extends TelegramLongPollingBot {
                 message.setText(searchInFile(text)).setParseMode(ParseMode.HTML);
                 execute(message);
             } catch (IOException | TelegramApiException e) {
-                e.printStackTrace();
+                log.error("ошибка");
             }
         }
 
@@ -51,10 +53,11 @@ public class Bot extends TelegramLongPollingBot {
 
 
     private String searchInFile(String text) throws IOException {
-        boolean isThat = false;
+        log.debug("Ищем в файле");
         StringBuilder builder = new StringBuilder();
         ClassLoader classLoader = this.getClass().getClassLoader();
         InputStream resourceAsStream = classLoader.getResourceAsStream(text.toLowerCase() + ".txt");
+        log.debug("ресурс ищ текста");
         if (resourceAsStream != null) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
             while (reader.ready()) {
