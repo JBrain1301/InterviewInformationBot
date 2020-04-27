@@ -1,1 +1,1 @@
-web: java -jar target/InterviewInformationBot-1.0.jar
+web: java -jar target/InterviewInformationBot-1.0-jar-with-dependencies.jar
