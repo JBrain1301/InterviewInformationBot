@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bot extends TelegramLongPollingBot {
-    private Map<String, String> answerMap = new HashMap<>();
     private StringBuilder builder = new StringBuilder();
+    private static final String BOT_TOKEN = System.getenv("TOKEN");
 
     public Bot() {
     }
@@ -46,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "805883194:AAGNMbsxz4412Q8e3HuXDaLm-NprJ1SkM90";
+        return BOT_TOKEN;
     }
 
 
@@ -56,7 +56,7 @@ public class Bot extends TelegramLongPollingBot {
         ClassLoader classLoader = this.getClass().getClassLoader();
         InputStream resourceAsStream = classLoader.getResourceAsStream(text.toLowerCase() + ".txt");
         if (resourceAsStream != null) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream,"utf-8"));
             while (reader.ready()) {
                 builder.append(reader.readLine()).append("\n");
             }

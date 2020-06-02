@@ -1,1 +1,1 @@
-web: java -jar InterviewInformationBot-1.0.jar
+worker: sh target/bin/workerBot
