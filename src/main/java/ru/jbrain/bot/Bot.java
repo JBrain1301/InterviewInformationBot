@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 
 public class Bot extends TelegramLongPollingBot {
     private static final Logger log = LoggerFactory.getLogger(Bot.class);
+    private static final String BOT_TOKEN = System.getenv("TOKEN");
 
     public Bot() {
     }
@@ -47,7 +48,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "805883194:AAGNMbsxz4412Q8e3HuXDaLm-NprJ1SkM90";
+        return BOT_TOKEN;
     }
 
 

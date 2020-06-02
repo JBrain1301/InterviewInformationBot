@@ -1,1 +1,1 @@
-web: java -cp target/InterviewInformationBot-1.0.jar ru.jbrain.App
+worker: sh target/bin/workerBot
